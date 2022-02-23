@@ -1,5 +1,6 @@
 name: riverpod_skeleton
 description: A brick to create a skeleton Flutter app with Riverpod.
+version: 0.0.1
 vars:
   - app_name
   - description
