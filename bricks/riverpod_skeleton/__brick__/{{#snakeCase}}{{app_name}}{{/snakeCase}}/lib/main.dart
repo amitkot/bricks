@@ -1,13 +1,37 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:logging/logging.dart';
+import 'package:logs/logs.dart';
 import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app.dart';
+import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app_provider_observer.dart';
+
+final _log = Logger('main');
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Logs().setupLogging(level: Level.FINER);
+
   FlutterError.onError = (details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
+    _log.severe(
+      'Flutter Error: ${details.exceptionAsString()}',
+      details.exception,
+      details.stack,
+    );
+    FlutterError.dumpErrorToConsole(details);
   };
 
-  // Run the app and pass its dependencies to it.
-  runApp(const App());
+  runZonedGuarded(
+    () => runApp(
+      ProviderScope(
+        observers: const [
+          AppProviderObserver(),
+        ],
+        child: App(),
+      ),
+    ),
+    (error, stackTrace) => _log.severe('Error: $error', error, stackTrace),
+  );
 }

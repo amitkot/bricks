@@ -1,9 +1,12 @@
-import 'dart:developer';
-
+import 'package:logging/logging.dart';
 import 'package:riverpod/riverpod.dart';
 
 /// Provider behavior observer.
 class AppProviderObserver extends ProviderObserver {
+  const AppProviderObserver();
+
+  static final _logger = Logger('State');
+
   @override
   void didUpdateProvider(
     ProviderBase provider,
@@ -11,9 +14,9 @@ class AppProviderObserver extends ProviderObserver {
     Object? newValue,
     ProviderContainer container,
   ) {
-    log(
-      'provider: ${provider.name ?? provider.runtimeType}\n'
-      'newValue": "$newValue\n',
+    _logger.finer(
+      '[${provider.name ?? provider.runtimeType}]\n'
+      'value: $newValue\n',
     );
   }
 }
