@@ -21,7 +21,7 @@ bricks:
 To install one or more bricks globally, use the following command:
 
 ```sh
-$ mason i https://github.com/amitkot/bricks --path bricks/<BRICK_NAME>
+$ mason add <BRICK_NAME> --global --git-url https://github.com/amitkot/bricks --git-path bricks/<BRICK_NAME>
 ```
 
 *Note: Be sure to replace `<BRICK_NAME>` with one of the following bricks:*
@@ -32,5 +32,12 @@ $ mason i https://github.com/amitkot/bricks --path bricks/<BRICK_NAME>
 | --------------------- | -------------------------------------------------------- |
 | riverpod_skeleton     | Create an opinionated Flutter Skeleton app with Riverpod |
 
+
+## Use
+```sh
+mason make <BRICK_NAME>
+cd <BRICK_NAME>
+flutter create .
+```
 
 [mason_link]: https://github.com/felangel/mason

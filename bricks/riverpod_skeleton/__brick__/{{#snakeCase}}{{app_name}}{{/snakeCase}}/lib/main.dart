@@ -1,11 +1,11 @@
-import 'dart:developer';
+import 'dart:async';
 
+import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app.dart';
+import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app_provider_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:logging/logging.dart';
 import 'package:logs/logs.dart';
-import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app.dart';
-import 'package:{{#snakeCase}}{{app_name}}{{/snakeCase}}/app/app_provider_observer.dart';
 
 final _log = Logger('main');
 
